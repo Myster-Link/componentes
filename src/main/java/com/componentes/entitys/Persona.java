@@ -7,16 +7,16 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-
+@MappedSuperclass
 public class Persona implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private char sexo;
     private String direccion;
     private Integer cedula;
+
     private static final long serialVersionUID = 1L;
 }

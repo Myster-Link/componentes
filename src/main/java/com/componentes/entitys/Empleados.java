@@ -1,9 +1,9 @@
 package com.componentes.entitys;
 
-import java.io.Serializable;
 import jakarta.persistence.*;
 
 import com.componentes.enums.Puesto;
+import java.io.Serializable;
 import lombok.*;
 
 @Getter
