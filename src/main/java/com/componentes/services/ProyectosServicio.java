@@ -5,7 +5,7 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 
 import com.componentes.entitys.Proyectos;
-import com.componentes.contracs.Icrud;
+import com.componentes.contracts.Icrud;
 
 public class ProyectosServicio implements Icrud<Proyectos> {
 

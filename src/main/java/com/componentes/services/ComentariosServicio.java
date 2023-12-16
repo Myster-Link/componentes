@@ -5,7 +5,7 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 
 import com.componentes.entitys.Comentario;
-import com.componentes.contracs.Icrud;
+import com.componentes.contracts.Icrud;
 
 public class ComentariosServicio implements Icrud<Comentario> {
 

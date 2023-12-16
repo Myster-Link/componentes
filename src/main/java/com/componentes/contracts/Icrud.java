@@ -1,4 +1,4 @@
-package com.componentes.contracs;
+package com.componentes.contracts;
 
 import java.util.List;
 

@@ -1,7 +1,6 @@
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Empleados.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Vacaciones.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\EmpleadosServicio.java
-C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\contracs\Icrud.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Asignaciones.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Proyectos.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\EmpleadoProyectoServicio.java
@@ -11,8 +10,10 @@ C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\c
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\enums\Puesto.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\backcompo\BackCompo.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\Servicio.java
+C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\contracts\ICrudController.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Persona.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\UsuariosServicio.java
+C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\contracts\Icrud.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Experencia_Laboral.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\VacacionesServicio.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\controllers\AuthController.java
