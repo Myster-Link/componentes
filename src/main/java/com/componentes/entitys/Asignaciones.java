@@ -26,7 +26,10 @@ public class Asignaciones implements Serializable {
     @Column(nullable = false)
     private String tarea;
 
+    @Column(name = "fecha_inicio")
     private Date fechaInicio;
+
+    @Column(name = "fecha_fin")
     private Date fechaFin;
     private static final long serialVersionUID = 1L;
 

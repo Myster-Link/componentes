@@ -5,12 +5,13 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 
 import com.componentes.entitys.Asignaciones;
-import com.componentes.contracts.Icrud;
+import com.componentes.contracts.ICrud;
+import java.sql.SQLException;
 
-public class AsignacionesServicio implements Icrud<Asignaciones> {
+public class AsignacionService implements ICrud<Asignaciones> {
 
     @Override
-    public Asignaciones encontarPK(EntityManager em, Object obj) {
+    public Asignaciones encontrarPK(EntityManager em, Asignaciones obj) throws SQLException {
         Asignaciones asignacionLocalizado = em.find(Asignaciones.class, obj);
         if (asignacionLocalizado != null) {
             return asignacionLocalizado;
@@ -19,28 +20,24 @@ public class AsignacionesServicio implements Icrud<Asignaciones> {
     }
 
     @Override
-    public List<Asignaciones> listar(EntityManager em) {
+    public List<Asignaciones> listar(EntityManager em) throws SQLException {
         String jpql = "SELECT t FROM " + Asignaciones.class.getSimpleName() + " t";
         List<Asignaciones> lista = em.createQuery(jpql, Asignaciones.class).getResultList();
         return lista;
     }
 
     @Override
-    public void insertar(EntityManager em, Asignaciones obj) {
-        try {
-            em.getTransaction().begin();
+    public void insertar(EntityManager em, Asignaciones obj) throws SQLException {
 
-            em.persist(obj);
+        em.getTransaction().begin();
 
-            em.getTransaction().commit();
+        em.persist(obj);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        em.getTransaction().commit();
     }
 
     @Override
-    public void eliminar(EntityManager em, Asignaciones obj) {
+    public void eliminar(EntityManager em, Asignaciones obj) throws SQLException {
         em.getTransaction().begin();
 
         em.remove(obj);
@@ -49,7 +46,7 @@ public class AsignacionesServicio implements Icrud<Asignaciones> {
     }
 
     @Override
-    public void modificar(EntityManager em, Asignaciones obj) {
+    public void modificar(EntityManager em, Asignaciones obj) throws SQLException {
         em.getTransaction().begin();
 
         em.merge(obj);

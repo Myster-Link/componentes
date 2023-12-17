@@ -5,15 +5,15 @@ import java.util.List;
 
 public interface ICrudController<T> {
 
-    boolean create(T objeto) throws SQLException;
+    boolean create(T objeto);
 
-    T read(int id) throws SQLException;
+    T read(int id);
 
-    boolean update(T objeto) throws SQLException;
+    boolean update(T objeto);
 
-    boolean delete(int id) throws SQLException;
+    boolean delete(int id);
 
-    List<T> readAll() throws SQLException;
+    List<T> readAll();
 
-    List<T> readAllByUser(int userId) throws SQLException;
+    List<T> readAllByUser(int userId);
 }

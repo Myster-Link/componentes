@@ -4,18 +4,19 @@ import java.util.List;
 
 import jakarta.persistence.EntityManager;
 
-import com.componentes.contracts.Icrud;
 import com.componentes.entitys.Usuarios;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import com.componentes.contracts.ICrud;
+import java.sql.SQLException;
 
-public class UsuariosServicio implements Icrud<Usuarios> {
+public class UsuarioService implements ICrud<Usuarios> {
 
-    public UsuariosServicio() {
+    public UsuarioService() {
     }
 
     @Override
-    public Usuarios encontarPK(EntityManager em, Object obj) {
+    public Usuarios encontrarPK(EntityManager em, Usuarios obj) throws SQLException {
         Usuarios usuariosLocalizado = em.find(Usuarios.class, obj);
         if (usuariosLocalizado != null) {
             return usuariosLocalizado;
@@ -24,28 +25,23 @@ public class UsuariosServicio implements Icrud<Usuarios> {
     }
 
     @Override
-    public List<Usuarios> listar(EntityManager em) {
+    public List<Usuarios> listar(EntityManager em) throws SQLException {
         String jpql = "SELECT t FROM " + Usuarios.class.getSimpleName() + " t";
         List<Usuarios> lista = em.createQuery(jpql, Usuarios.class).getResultList();
         return lista;
     }
 
     @Override
-    public void insertar(EntityManager em, Usuarios obj) {
-        try {
-            em.getTransaction().begin();
+    public void insertar(EntityManager em, Usuarios obj) throws SQLException {
+        em.getTransaction().begin();
 
-            em.persist(obj);
+        em.persist(obj);
 
-            em.getTransaction().commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        em.getTransaction().commit();
     }
 
     @Override
-    public void eliminar(EntityManager em, Usuarios obj) {
+    public void eliminar(EntityManager em, Usuarios obj) throws SQLException {
         em.getTransaction().begin();
 
         em.remove(obj);
@@ -55,7 +51,7 @@ public class UsuariosServicio implements Icrud<Usuarios> {
     }
 
     @Override
-    public void modificar(EntityManager em, Usuarios obj) {
+    public void modificar(EntityManager em, Usuarios obj) throws SQLException {
         em.getTransaction().begin();
 
         em.merge(obj);

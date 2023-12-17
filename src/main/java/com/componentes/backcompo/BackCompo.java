@@ -1,21 +1,36 @@
 package com.componentes.backcompo;
 
 import com.componentes.controllers.*;
-import com.componentes.entitys.Usuarios;
-import com.componentes.enums.Rol;
+import com.componentes.entitys.*;
+import com.componentes.enums.Puesto;
+import java.util.List;
 
 public class BackCompo {
 
     public static void main(String[] args) {
-        AuthController authController = new AuthController();
+        try {
+            EmpleadoController controller = new EmpleadoController();
 
-        Usuarios usuarios = new Usuarios();
-        usuarios.setCedula(118800102);
+            Usuarios usuario = new Usuarios();
+            usuario.setId(1);
 
-        boolean result = authController.login(usuarios);
+            Empleados empleado = new Empleados();
+            empleado.setCedula(118800102);
+            empleado.setDireccion("asfasfas");
+            empleado.setSexo('M');
+            empleado.setNombre("sassa");
+            empleado.setPuesto(Puesto.ANALISTA);
+            //empleado.setUsuario(usuario);
 
-        System.out.println("" + result);
+            //boolean result = controller.create(empleado);
 
-        PersistenceManager.closeEntityManagerFactory();
+            for (Empleados e : controller.readAll()) {
+                System.out.println("Empleado: " + e.getNombre());
+            }
+
+            PersistenceManager.closeEntityManagerFactory();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

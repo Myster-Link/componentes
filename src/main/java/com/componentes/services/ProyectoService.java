@@ -5,12 +5,13 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 
 import com.componentes.entitys.Proyectos;
-import com.componentes.contracts.Icrud;
+import com.componentes.contracts.ICrud;
+import java.sql.SQLException;
 
-public class ProyectosServicio implements Icrud<Proyectos> {
+public class ProyectoService implements ICrud<Proyectos> {
 
     @Override
-    public Proyectos encontarPK(EntityManager em, Object obj) {
+    public Proyectos encontrarPK(EntityManager em, Proyectos obj) throws SQLException {
         Proyectos proyectosLocalizado = em.find(Proyectos.class, obj);
         if (proyectosLocalizado != null) {
             return proyectosLocalizado;
@@ -19,14 +20,14 @@ public class ProyectosServicio implements Icrud<Proyectos> {
     }
 
     @Override
-    public List<Proyectos> listar(EntityManager em) {
+    public List<Proyectos> listar(EntityManager em) throws SQLException {
         String jpql = "SELECT t FROM " + Proyectos.class.getSimpleName() + " t";
         List<Proyectos> lista = em.createQuery(jpql, Proyectos.class).getResultList();
         return lista;
     }
 
     @Override
-    public void insertar(EntityManager em, Proyectos obj) {
+    public void insertar(EntityManager em, Proyectos obj) throws SQLException {
         try {
             em.getTransaction().begin();
 
@@ -40,7 +41,7 @@ public class ProyectosServicio implements Icrud<Proyectos> {
     }
 
     @Override
-    public void eliminar(EntityManager em, Proyectos obj) {
+    public void eliminar(EntityManager em, Proyectos obj) throws SQLException {
         em.getTransaction().begin();
 
         em.remove(obj);
@@ -49,7 +50,7 @@ public class ProyectosServicio implements Icrud<Proyectos> {
     }
 
     @Override
-    public void modificar(EntityManager em, Proyectos obj) {
+    public void modificar(EntityManager em, Proyectos obj) throws SQLException {
         em.getTransaction().begin();
 
         em.merge(obj);

@@ -5,12 +5,13 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 
 import com.componentes.entitys.EmpleadoProyecto;
-import com.componentes.contracts.Icrud;
+import com.componentes.contracts.ICrud;
+import java.sql.SQLException;
 
-public class EmpleadoProyectoServicio implements Icrud<EmpleadoProyecto> {
+public class EmpleadoProyectoService implements ICrud<EmpleadoProyecto> {
 
     @Override
-    public EmpleadoProyecto encontarPK(EntityManager em, Object obj) {
+    public EmpleadoProyecto encontrarPK(EntityManager em, EmpleadoProyecto obj) throws SQLException {
         EmpleadoProyecto empleadoPLocalizado = em.find(EmpleadoProyecto.class, obj);
         if (empleadoPLocalizado != null) {
             return empleadoPLocalizado;
@@ -19,28 +20,23 @@ public class EmpleadoProyectoServicio implements Icrud<EmpleadoProyecto> {
     }
 
     @Override
-    public List<EmpleadoProyecto> listar(EntityManager em) {
+    public List<EmpleadoProyecto> listar(EntityManager em) throws SQLException {
         String jpql = "SELECT t FROM " + EmpleadoProyecto.class.getSimpleName() + " t";
         List<EmpleadoProyecto> lista = em.createQuery(jpql, EmpleadoProyecto.class).getResultList();
         return lista;
     }
 
     @Override
-    public void insertar(EntityManager em, EmpleadoProyecto obj) {
-        try {
-            em.getTransaction().begin();
+    public void insertar(EntityManager em, EmpleadoProyecto obj) throws SQLException {
+        em.getTransaction().begin();
 
-            em.persist(obj);
+        em.persist(obj);
 
-            em.getTransaction().commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        em.getTransaction().commit();
     }
 
     @Override
-    public void eliminar(EntityManager em, EmpleadoProyecto obj) {
+    public void eliminar(EntityManager em, EmpleadoProyecto obj) throws SQLException {
         em.getTransaction().begin();
 
         em.remove(obj);
@@ -49,7 +45,7 @@ public class EmpleadoProyectoServicio implements Icrud<EmpleadoProyecto> {
     }
 
     @Override
-    public void modificar(EntityManager em, EmpleadoProyecto obj) {
+    public void modificar(EntityManager em, EmpleadoProyecto obj) throws SQLException {
         em.getTransaction().begin();
 
         em.merge(obj);

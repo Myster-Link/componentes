@@ -27,7 +27,7 @@ public class Usuarios extends Persona implements Serializable {
     @Column(nullable = false)
     private Rol rol;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;
 
     private static final long serialVersionUID = 1L;

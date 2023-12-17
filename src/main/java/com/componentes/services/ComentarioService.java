@@ -5,12 +5,13 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 
 import com.componentes.entitys.Comentario;
-import com.componentes.contracts.Icrud;
+import com.componentes.contracts.ICrud;
+import java.sql.SQLException;
 
-public class ComentariosServicio implements Icrud<Comentario> {
+public class ComentarioService implements ICrud<Comentario> {
 
     @Override
-    public Comentario encontarPK(EntityManager em, Object obj) {
+    public Comentario encontrarPK(EntityManager em, Comentario obj) throws SQLException {
         Comentario comentarioLocalizado = em.find(Comentario.class, obj);
         if (comentarioLocalizado != null) {
             return comentarioLocalizado;
@@ -19,28 +20,23 @@ public class ComentariosServicio implements Icrud<Comentario> {
     }
 
     @Override
-    public List<Comentario> listar(EntityManager em) {
+    public List<Comentario> listar(EntityManager em) throws SQLException {
         String jpql = "SELECT t FROM " + Comentario.class.getSimpleName() + " t";
         List<Comentario> lista = em.createQuery(jpql, Comentario.class).getResultList();
         return lista;
     }
 
     @Override
-    public void insertar(EntityManager em, Comentario obj) {
-        try {
-            em.getTransaction().begin();
+    public void insertar(EntityManager em, Comentario obj) throws SQLException {
+        em.getTransaction().begin();
 
-            em.persist(obj);
+        em.persist(obj);
 
-            em.getTransaction().commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        em.getTransaction().commit();
     }
 
     @Override
-    public void eliminar(EntityManager em, Comentario obj) {
+    public void eliminar(EntityManager em, Comentario obj) throws SQLException {
         em.getTransaction().begin();
 
         em.remove(obj);
@@ -49,7 +45,7 @@ public class ComentariosServicio implements Icrud<Comentario> {
     }
 
     @Override
-    public void modificar(EntityManager em, Comentario obj) {
+    public void modificar(EntityManager em, Comentario obj) throws SQLException {
         em.getTransaction().begin();
 
         em.merge(obj);

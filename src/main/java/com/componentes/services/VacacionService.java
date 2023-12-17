@@ -5,12 +5,13 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 
 import com.componentes.entitys.Vacaciones;
-import com.componentes.contracts.Icrud;
+import com.componentes.contracts.ICrud;
+import java.sql.SQLException;
 
-public class VacacionesServicio implements Icrud<Vacaciones> {
+public class VacacionService implements ICrud<Vacaciones> {
 
     @Override
-    public Vacaciones encontarPK(EntityManager em, Object obj) {
+    public Vacaciones encontrarPK(EntityManager em, Vacaciones obj) throws SQLException {
         Vacaciones vacacionesLocalizado = em.find(Vacaciones.class, obj);
         if (vacacionesLocalizado != null) {
             return vacacionesLocalizado;
@@ -19,28 +20,23 @@ public class VacacionesServicio implements Icrud<Vacaciones> {
     }
 
     @Override
-    public List<Vacaciones> listar(EntityManager em) {
+    public List<Vacaciones> listar(EntityManager em) throws SQLException {
         String jpql = "SELECT t FROM " + Vacaciones.class.getSimpleName() + " t";
         List<Vacaciones> lista = em.createQuery(jpql, Vacaciones.class).getResultList();
         return lista;
     }
 
     @Override
-    public void insertar(EntityManager em, Vacaciones obj) {
-        try {
-            em.getTransaction().begin();
+    public void insertar(EntityManager em, Vacaciones obj) throws SQLException {
+        em.getTransaction().begin();
 
-            em.persist(obj);
+        em.persist(obj);
 
-            em.getTransaction().commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        em.getTransaction().commit();
     }
 
     @Override
-    public void eliminar(EntityManager em, Vacaciones obj) {
+    public void eliminar(EntityManager em, Vacaciones obj) throws SQLException {
         em.getTransaction().begin();
 
         em.remove(obj);
@@ -49,7 +45,7 @@ public class VacacionesServicio implements Icrud<Vacaciones> {
     }
 
     @Override
-    public void modificar(EntityManager em, Vacaciones obj) {
+    public void modificar(EntityManager em, Vacaciones obj) throws SQLException {
         em.getTransaction().begin();
 
         em.merge(obj);

@@ -15,6 +15,8 @@ public class Persona implements Serializable {
     private Integer id;
     private char sexo;
     private String direccion;
+    
+    @Column(unique = true, nullable = false)
     private Integer cedula;
 
     private static final long serialVersionUID = 1L;

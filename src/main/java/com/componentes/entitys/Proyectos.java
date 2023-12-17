@@ -16,6 +16,7 @@ public class Proyectos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "nombre_proyecto")
     private String nombreProyecto;
 
     @ManyToOne
@@ -27,5 +28,6 @@ public class Proyectos implements Serializable {
 
     @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EmpleadoProyecto> empleadosEnProyecto;
+
     private static final long serialVersionUID = 1L;
 }

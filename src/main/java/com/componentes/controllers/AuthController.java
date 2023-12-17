@@ -2,7 +2,7 @@ package com.componentes.controllers;
 
 import com.componentes.entitys.Usuarios;
 import com.componentes.enums.Rol;
-import com.componentes.services.UsuariosServicio;
+import com.componentes.services.UsuarioService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -10,11 +10,12 @@ import java.time.LocalDateTime;
 
 public class AuthController {
 
-    EntityManager em = null;
-    private UsuariosServicio usuariosServicio;
+    private EntityManager em = null;
+    private UsuarioService usuariosServicio;
+    private Usuarios usuarioObtenido;
 
     public AuthController() {
-        this.usuariosServicio = new UsuariosServicio();
+        this.usuariosServicio = new UsuarioService();
 
         if (em == null) {
             em = PersistenceManager.getEntityManager("BackCompPU");
@@ -23,7 +24,7 @@ public class AuthController {
 
     public boolean login(Usuarios usuarios) {
         try {
-            Usuarios usuarioObtenido = usuariosServicio.encontrarPorCedula(em, usuarios.getCedula());
+            usuarioObtenido = usuariosServicio.encontrarPorCedula(em, usuarios.getCedula());
 
             if (usuarioObtenido.getClave().equals(usuarios.getClave())) {
                 return true;

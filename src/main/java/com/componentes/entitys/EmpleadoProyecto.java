@@ -25,7 +25,10 @@ public class EmpleadoProyecto implements Serializable {
     @JoinColumn(name = "proyecto_id")
     private Proyectos proyecto;
 
+    @Column(name = "fecha_inicio")
     private Date fechaInicio;
+
+    @Column(name = "fecha_fin")
     private Date fechaFin;
 
     private static final long serialVersionUID = 1L;

@@ -20,7 +20,10 @@ public class Vacaciones implements Serializable {
     @JoinColumn(name = "empleado_id")
     private Empleados empleado;
 
+    @Column(name = "fecha_inicio")
     private Date fechaInicio;
+
+    @Column(name = "fecha_fin")
     private Date fechaFin;
 
     private static final long serialVersionUID = 1L;
