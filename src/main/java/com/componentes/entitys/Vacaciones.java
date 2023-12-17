@@ -13,11 +13,11 @@ import lombok.*;
 public class Vacaciones implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "id_empleado")
+    @JoinColumn(name = "empleado_id")
     private Empleados empleado;
 
     private Date fechaInicio;

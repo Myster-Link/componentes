@@ -4,15 +4,15 @@
     <!-- Proveedor de persistencia para Hibernate -->
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Clases de entidad -->
-    <class>Entity.Usuarios</class>
-    <class>Entity.Empleados</class>
-    <class>Entity.Proyectos</class>
-    <class>Entity.Experencia_Laboral</class>
-    <class>Entity.Asignaciones</class>
-    <class>Entity.Vacaciones</class>
-    <class>Entity.EmpleadoProyecto</class>
-    <class>Entity.Comentario</class>
-    <class>Entity.Persona</class>
+    <class>com.componentes.entitys.Usuarios</class>
+    <class>com.componentes.entitys.Empleados</class>
+    <class>com.componentes.entitys.Proyectos</class>
+    <class>com.componentes.entitys.Asignaciones</class>
+    <class>com.componentes.entitys.Vacaciones</class>
+    <class>com.componentes.entitys.EmpleadoProyecto</class>
+    <class>com.componentes.entitys.Comentario</class>
+    <class>com.componentes.entitys.Persona</class>
+    <class>com.componentes.entitys.ExperenciaLaboral</class>
     <properties>
       <!-- Configuración de la conexión a la base de datos -->
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/proyectos"/>

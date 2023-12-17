@@ -12,15 +12,15 @@ import lombok.*;
 public class Asignaciones implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "id_empleado")
+    @JoinColumn(name = "empleado_id")
     private Empleados empleado;
 
     @ManyToOne
-    @JoinColumn(name = "id_proyecto")
+    @JoinColumn(name = "proyecto_id")
     private Proyectos proyecto;
 
     @Column(nullable = false)

@@ -20,7 +20,7 @@ public class Empleados extends Persona implements Serializable {
     private Puesto puesto;
 
     @OneToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "usuario_id")
     private Usuarios usuario;
 
     private static final long serialVersionUID = 1L;

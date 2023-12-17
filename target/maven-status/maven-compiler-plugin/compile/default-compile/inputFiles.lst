@@ -3,6 +3,7 @@ C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\c
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\EmpleadosServicio.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Asignaciones.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Proyectos.java
+C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\ExperenciaLaboral.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\EmpleadoProyectoServicio.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\ProyectosServicio.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Comentario.java
@@ -14,7 +15,6 @@ C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\c
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Persona.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\UsuariosServicio.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\contracts\Icrud.java
-C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Experencia_Laboral.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\VacacionesServicio.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\controllers\AuthController.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\controllers\PersistenceManager.java

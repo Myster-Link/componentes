@@ -11,13 +11,13 @@ import lombok.*;
 public class Comentario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
     private String texto;
 
     @ManyToOne
-    @JoinColumn(name = "id_proyecto")
+    @JoinColumn(name = "proyecto_id")
     private Proyectos proyecto;
     private static final long serialVersionUID = 1L;
 

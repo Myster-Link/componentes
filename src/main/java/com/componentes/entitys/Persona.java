@@ -13,7 +13,6 @@ public class Persona implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private char sexo;
     private String direccion;
     private Integer cedula;

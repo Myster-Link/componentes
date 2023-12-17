@@ -6,6 +6,8 @@ import jakarta.persistence.EntityManager;
 
 import com.componentes.contracts.Icrud;
 import com.componentes.entitys.Usuarios;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
 
 public class UsuariosServicio implements Icrud<Usuarios> {
 
@@ -61,4 +63,12 @@ public class UsuariosServicio implements Icrud<Usuarios> {
         em.getTransaction().commit();
     }
 
+    public Usuarios encontrarPorCedula(EntityManager em, int numeroCedula) {
+        String jpql = "SELECT u FROM " + Usuarios.class.getSimpleName() + " u WHERE u.cedula = :numeroCedula";
+
+        TypedQuery<Usuarios> query = em.createQuery(jpql, Usuarios.class);
+        query.setParameter("numeroCedula", numeroCedula);
+
+        return query.getSingleResult();
+    }
 }

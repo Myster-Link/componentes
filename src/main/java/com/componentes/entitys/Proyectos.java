@@ -13,13 +13,13 @@ import lombok.*;
 public class Proyectos implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String nombreProyecto;
 
     @ManyToOne
-    @JoinColumn(name = "id_empleado_lider")
+    @JoinColumn(name = "empleado_lider_id")
     private Empleados liderProyecto;
 
     @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, orphanRemoval = true)

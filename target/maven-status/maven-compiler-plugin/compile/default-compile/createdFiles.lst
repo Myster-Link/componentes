@@ -2,6 +2,7 @@ com\componentes\entitys\EmpleadoProyecto.class
 com\componentes\controllers\AuthController.class
 com\componentes\services\AsignacionesServicio.class
 com\componentes\controllers\PersistenceManager.class
+com\componentes\entitys\ExperenciaLaboral.class
 com\componentes\entitys\Vacaciones.class
 com\componentes\contracts\Icrud.class
 com\componentes\services\ComentariosServicio.class
@@ -17,7 +18,6 @@ com\componentes\services\Servicio.class
 com\componentes\entitys\Usuarios.class
 com\componentes\entitys\Empleados.class
 com\componentes\services\UsuariosServicio.class
-com\componentes\entitys\Experencia_Laboral.class
 com\componentes\services\VacacionesServicio.class
 com\componentes\entitys\Asignaciones.class
 com\componentes\services\EmpleadosServicio.class

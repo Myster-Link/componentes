@@ -4,18 +4,19 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Table(name = "experiencia_laboral")
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-public class Experencia_Laboral implements Serializable {
+public class ExperenciaLaboral implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "id_empleado")
+    @JoinColumn(name = "empleado_id")
     private Empleados empleado;
 
     private String curriculum;
