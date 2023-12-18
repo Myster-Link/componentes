@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Rol {
     ADMINISTRADOR("Administrador"),
-    USUARIO("USUARIO");
+    EMPLEADO("Empleado");
     private final String Descripcion;
 }

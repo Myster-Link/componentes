@@ -16,4 +16,7 @@ public interface ICrud<E> {
     public void eliminar(EntityManager em, E obj) throws SQLException;
 
     public void modificar(EntityManager em, E obj) throws SQLException;
+
+    public List<E> listarPorEmpleadoId(EntityManager em, Long empleadoId) throws SQLException;
+
 }

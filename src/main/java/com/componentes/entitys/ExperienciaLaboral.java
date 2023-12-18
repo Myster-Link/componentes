@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @Entity
-public class ExperenciaLaboral implements Serializable {
+public class ExperienciaLaboral implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

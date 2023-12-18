@@ -1,27 +1,22 @@
 package com.componentes.controllers;
 
 import com.componentes.contracts.ICrudController;
-import com.componentes.entitys.*;
-import com.componentes.services.*;
+import com.componentes.entitys.Vacaciones;
+import com.componentes.services.VacacionService;
 import jakarta.persistence.EntityManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpleadoController implements ICrudController<Empleados> {
+public class VacacionController implements ICrudController<Vacaciones> {
 
     private EntityManager em = null;
-    private EmpleadoService empleadoService;
-    private List<Empleados> empleados;
-    private Empleados empleado;
+    private VacacionService vacacionService;
+    private List<Vacaciones> vacaciones;
+    private Vacaciones vacacion;
 
-
-    private ExperienciaService experianciaService;
-
-    public EmpleadoController() {
-
-        this.empleadoService = new EmpleadoService();
-        this.experianciaService = new ExperienciaService();
+    public VacacionController() {
+        this.vacacionService = new VacacionService();
 
         if (em == null) {
             em = PersistenceManager.getEntityManager("BackCompPU");
@@ -29,9 +24,9 @@ public class EmpleadoController implements ICrudController<Empleados> {
     }
 
     @Override
-    public boolean create(Empleados objeto) {
+    public boolean create(Vacaciones objeto) {
         try {
-            this.empleadoService.insertar(em, objeto);
+            this.vacacionService.insertar(em, objeto);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,12 +35,12 @@ public class EmpleadoController implements ICrudController<Empleados> {
     }
 
     @Override
-    public Empleados read(int id) {
+    public Vacaciones read(int id) {
         try {
-            empleado = new Empleados();
-            empleado.setId(id);
-            empleado = this.empleadoService.encontrarPK(em, empleado);
-            return empleado;
+            vacacion = new Vacaciones();
+            vacacion.setId(id);
+            vacacion = this.vacacionService.encontrarPK(em, vacacion);
+            return vacacion;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,9 +48,9 @@ public class EmpleadoController implements ICrudController<Empleados> {
     }
 
     @Override
-    public boolean update(Empleados objeto) {
+    public boolean update(Vacaciones objeto) {
         try {
-            this.empleadoService.modificar(em, objeto);
+            this.vacacionService.modificar(em, objeto);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,9 +61,9 @@ public class EmpleadoController implements ICrudController<Empleados> {
     @Override
     public boolean delete(int id) {
         try {
-            empleado = new Empleados();
-            empleado.setId(id);
-            this.empleadoService.eliminar(em, empleado);
+            vacacion = new Vacaciones();
+            vacacion.setId(id);
+            this.vacacionService.eliminar(em, vacacion);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,12 +72,12 @@ public class EmpleadoController implements ICrudController<Empleados> {
     }
 
     @Override
-    public List<Empleados> readAll() {
-        empleados = new ArrayList<>();
+    public List<Vacaciones> readAll() {
+        vacaciones = new ArrayList<>();
 
         try {
-            empleados = this.empleadoService.listar(em);
-            return empleados;
+            vacaciones = this.vacacionService.listar(em);
+            return vacaciones;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,7 +85,8 @@ public class EmpleadoController implements ICrudController<Empleados> {
     }
 
     @Override
-    public List<Empleados> readAllByUser(int userId) {
+    public List<Vacaciones> readAllByUser(int userId) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }

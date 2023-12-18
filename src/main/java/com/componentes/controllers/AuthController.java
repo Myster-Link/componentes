@@ -22,25 +22,25 @@ public class AuthController {
         }
     }
 
-    public boolean login(Usuarios usuarios) {
+    public Usuarios login(Usuarios usuarios) {
         try {
             usuarioObtenido = usuariosServicio.encontrarPorCedula(em, usuarios.getCedula());
 
             if (usuarioObtenido.getClave().equals(usuarios.getClave())) {
-                return true;
+                return usuarioObtenido;
             }
         } catch (NoResultException e) {
             e.printStackTrace();
-            return false;
+            return null;
         } finally {
             PersistenceManager.closeEntityManager(em);
         }
-        return false;
+        return null;
     }
 
     public boolean register(Usuarios usuarios) {
         try {
-            usuarios.setRol(Rol.USUARIO);
+            usuarios.setRol(Rol.EMPLEADO);
             usuarios.setFechaRegistro(LocalDateTime.now());
             usuariosServicio.insertar(em, usuarios);
             return true;

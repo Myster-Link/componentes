@@ -1,27 +1,22 @@
 package com.componentes.controllers;
 
 import com.componentes.contracts.ICrudController;
-import com.componentes.entitys.*;
-import com.componentes.services.*;
+import com.componentes.entitys.ExperienciaLaboral;
+import com.componentes.services.ExperienciaService;
 import jakarta.persistence.EntityManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpleadoController implements ICrudController<Empleados> {
+public class ExperienciaController implements ICrudController<ExperienciaLaboral> {
 
     private EntityManager em = null;
-    private EmpleadoService empleadoService;
-    private List<Empleados> empleados;
-    private Empleados empleado;
+    private ExperienciaService experienciaService;
+    private List<ExperienciaLaboral> experiencias;
+    private ExperienciaLaboral experiencia;
 
-
-    private ExperienciaService experianciaService;
-
-    public EmpleadoController() {
-
-        this.empleadoService = new EmpleadoService();
-        this.experianciaService = new ExperienciaService();
+    public ExperienciaController() {
+        this.experienciaService = new ExperienciaService();
 
         if (em == null) {
             em = PersistenceManager.getEntityManager("BackCompPU");
@@ -29,9 +24,9 @@ public class EmpleadoController implements ICrudController<Empleados> {
     }
 
     @Override
-    public boolean create(Empleados objeto) {
+    public boolean create(ExperienciaLaboral objeto) {
         try {
-            this.empleadoService.insertar(em, objeto);
+            this.experienciaService.insertar(em, objeto);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,12 +35,12 @@ public class EmpleadoController implements ICrudController<Empleados> {
     }
 
     @Override
-    public Empleados read(int id) {
+    public ExperienciaLaboral read(int id) {
         try {
-            empleado = new Empleados();
-            empleado.setId(id);
-            empleado = this.empleadoService.encontrarPK(em, empleado);
-            return empleado;
+            experiencia = new ExperienciaLaboral();
+            experiencia.setId(id);
+            experiencia = this.experienciaService.encontrarPK(em, experiencia);
+            return experiencia;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,9 +48,9 @@ public class EmpleadoController implements ICrudController<Empleados> {
     }
 
     @Override
-    public boolean update(Empleados objeto) {
+    public boolean update(ExperienciaLaboral objeto) {
         try {
-            this.empleadoService.modificar(em, objeto);
+            this.experienciaService.modificar(em, objeto);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,9 +61,9 @@ public class EmpleadoController implements ICrudController<Empleados> {
     @Override
     public boolean delete(int id) {
         try {
-            empleado = new Empleados();
-            empleado.setId(id);
-            this.empleadoService.eliminar(em, empleado);
+            experiencia = new ExperienciaLaboral();
+            experiencia.setId(id);
+            this.experienciaService.eliminar(em, experiencia);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,12 +72,12 @@ public class EmpleadoController implements ICrudController<Empleados> {
     }
 
     @Override
-    public List<Empleados> readAll() {
-        empleados = new ArrayList<>();
+    public List<ExperienciaLaboral> readAll() {
+        experiencias = new ArrayList<>();
 
         try {
-            empleados = this.empleadoService.listar(em);
-            return empleados;
+            experiencias = this.experienciaService.listar(em);
+            return experiencias;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,7 +85,8 @@ public class EmpleadoController implements ICrudController<Empleados> {
     }
 
     @Override
-    public List<Empleados> readAllByUser(int userId) {
+    public List<ExperienciaLaboral> readAllByUser(int userId) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }

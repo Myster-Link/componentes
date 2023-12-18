@@ -58,4 +58,9 @@ public class ProyectoService implements ICrud<Proyectos> {
         em.getTransaction().commit();
     }
 
+    @Override
+    public List<Proyectos> listarPorEmpleadoId(EntityManager em, Long empleadoId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

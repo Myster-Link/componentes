@@ -1,4 +1,5 @@
 package com.componentes.controllers;
+
 import com.componentes.contracts.ICrudController;
 import com.componentes.entitys.Proyectos;
 import com.componentes.services.ProyectoService;
@@ -7,20 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProyectoController implements ICrudController<Proyectos> {
- private EntityManager em = null;
+
+    private EntityManager em = null;
     private ProyectoService proyectoService;
     private List<Proyectos> listProyectos;
     private Proyectos proyecto;
 
     public ProyectoController() {
-         this.proyectoService = new ProyectoService();
+        this.proyectoService = new ProyectoService();
 
         if (em == null) {
             em = PersistenceManager.getEntityManager("BackCompPU");
         }
     }
-    
-    
+
     @Override
     public boolean create(Proyectos objeto) {
         try {
@@ -34,7 +35,7 @@ public class ProyectoController implements ICrudController<Proyectos> {
 
     @Override
     public Proyectos read(int id) {
-         try {
+        try {
             proyecto = new Proyectos();
             proyecto.setId(id);
             proyecto = this.proyectoService.encontrarPK(em, proyecto);
@@ -47,17 +48,18 @@ public class ProyectoController implements ICrudController<Proyectos> {
 
     @Override
     public boolean update(Proyectos objeto) {
-      try {
+        try {
             this.proyectoService.modificar(em, objeto);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        }    }
+        }
+    }
 
     @Override
     public boolean delete(int id) {
-         try {
+        try {
             proyecto = new Proyectos();
             proyecto.setId(id);
             this.proyectoService.eliminar(em, proyecto);

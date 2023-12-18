@@ -3,9 +3,9 @@ com\componentes\controllers\AuthController.class
 com\componentes\services\VacacionService.class
 com\componentes\controllers\PersistenceManager.class
 com\componentes\controllers\EmpleadoController.class
-com\componentes\entitys\ExperenciaLaboral.class
 com\componentes\entitys\Vacaciones.class
 com\componentes\contracts\ICrud.class
+com\componentes\controllers\VacacionController.class
 com\componentes\backcompo\BackCompo.class
 com\componentes\services\UsuarioService.class
 com\componentes\entitys\Comentario.class
@@ -15,11 +15,14 @@ com\componentes\services\EmpleadoProyectoService.class
 com\componentes\services\EmpleadoService.class
 com\componentes\enums\Rol.class
 com\componentes\entitys\Proyectos.class
+com\componentes\services\ExperienciaService.class
 com\componentes\entitys\Usuarios.class
 com\componentes\entitys\Empleados.class
 com\componentes\services\AsignacionService.class
+com\componentes\entitys\ExperienciaLaboral.class
 com\componentes\services\ProyectoService.class
 com\componentes\controllers\ProyectoController.class
+com\componentes\controllers\ExperienciaController.class
 com\componentes\services\ComentarioService.class
 com\componentes\entitys\Asignaciones.class
 com\componentes\services\Conexion.class

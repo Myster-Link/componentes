@@ -11,12 +11,15 @@ C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\c
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\controllers\PersistenceManager.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\enums\Rol.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Empleados.java
+C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\ExperienciaService.java
+C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\controllers\ExperienciaController.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\VacacionService.java
-C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\ExperenciaLaboral.java
+C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\ExperienciaLaboral.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\EmpleadoService.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\EmpleadoProyecto.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\UsuarioService.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\backcompo\BackCompo.java
+C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\controllers\VacacionController.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\services\AsignacionService.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\contracts\ICrudController.java
 C:\Users\chris\Documents\Universidad\Componentes\componentes\src\main\java\com\componentes\entitys\Persona.java

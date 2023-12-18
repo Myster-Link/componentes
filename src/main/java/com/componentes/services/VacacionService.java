@@ -53,4 +53,12 @@ public class VacacionService implements ICrud<Vacaciones> {
         em.getTransaction().commit();
     }
 
+    @Override
+    public List<Vacaciones> listarPorEmpleadoId(EntityManager em, Long empleadoId) throws SQLException {
+        String jpql = "SELECT t FROM " + Vacaciones.class.getSimpleName() + " t WHERE t.empleado_id = :empleadoId";
+        return em.createQuery(jpql, Vacaciones.class)
+                .setParameter("empleadoId", empleadoId)
+                .getResultList();
+    }
+
 }

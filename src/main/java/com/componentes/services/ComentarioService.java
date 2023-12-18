@@ -53,4 +53,9 @@ public class ComentarioService implements ICrud<Comentario> {
         em.getTransaction().commit();
     }
 
+    @Override
+    public List<Comentario> listarPorEmpleadoId(EntityManager em, Long empleadoId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

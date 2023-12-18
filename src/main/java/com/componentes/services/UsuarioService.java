@@ -67,4 +67,9 @@ public class UsuarioService implements ICrud<Usuarios> {
 
         return query.getSingleResult();
     }
+
+    @Override
+    public List<Usuarios> listarPorEmpleadoId(EntityManager em, Long empleadoId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
