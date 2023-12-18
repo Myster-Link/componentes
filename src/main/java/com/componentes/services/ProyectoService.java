@@ -11,56 +11,61 @@ import java.sql.SQLException;
 public class ProyectoService implements ICrud<Proyectos> {
 
     @Override
-    public Proyectos encontrarPK(EntityManager em, Proyectos obj) throws SQLException {
-        Proyectos proyectosLocalizado = em.find(Proyectos.class, obj);
-        if (proyectosLocalizado != null) {
-            return proyectosLocalizado;
-        }
-        return null;
+    public void create(EntityManager em, Proyectos obj) throws SQLException {
+        em.getTransaction().begin();
+
+        em.persist(obj);
+
+        em.getTransaction().commit();
     }
 
     @Override
-    public List<Proyectos> listar(EntityManager em) throws SQLException {
+    public Proyectos read(EntityManager em, int id) throws SQLException {
+        return em.find(Proyectos.class, id);
+    }
+
+    @Override
+    public void update(EntityManager em, int id) throws SQLException {
+        em.getTransaction().begin();
+
+        Proyectos response = em.find(Proyectos.class, id);
+        if (response != null) {
+            em.merge(response);
+        }
+
+        em.getTransaction().commit();
+    }
+
+    @Override
+    public void delete(EntityManager em, int id) throws SQLException {
+        em.getTransaction().begin();
+
+        Proyectos response = em.find(Proyectos.class, id);
+        if (response != null) {
+            em.remove(response);
+        }
+
+        em.getTransaction().commit();
+    }
+
+    @Override
+    public List<Proyectos> readAll(EntityManager em) throws SQLException {
         String jpql = "SELECT t FROM " + Proyectos.class.getSimpleName() + " t";
         List<Proyectos> lista = em.createQuery(jpql, Proyectos.class).getResultList();
         return lista;
     }
 
     @Override
-    public void insertar(EntityManager em, Proyectos obj) throws SQLException {
-        try {
-            em.getTransaction().begin();
-
-            em.persist(obj);
-
-            em.getTransaction().commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void eliminar(EntityManager em, Proyectos obj) throws SQLException {
+    public List<Proyectos> readAllByUser(EntityManager em, int id) throws SQLException {
         em.getTransaction().begin();
 
-        em.remove(obj);
+        String jpql = "SELECT c FROM Proyectos c WHERE c.usuario_id = :id";
+        List<Proyectos> lista = em.createQuery(jpql, Proyectos.class)
+                .setParameter("id", id)
+                .getResultList();
 
         em.getTransaction().commit();
+
+        return lista;
     }
-
-    @Override
-    public void modificar(EntityManager em, Proyectos obj) throws SQLException {
-        em.getTransaction().begin();
-
-        em.merge(obj);
-
-        em.getTransaction().commit();
-    }
-
-    @Override
-    public List<Proyectos> listarPorEmpleadoId(EntityManager em, Long empleadoId) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

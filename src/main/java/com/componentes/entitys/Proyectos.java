@@ -6,10 +6,10 @@ import java.util.List;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
 public class Proyectos implements Serializable {
 
     @Id
@@ -27,7 +27,8 @@ public class Proyectos implements Serializable {
     private List<Comentario> comentarios;
 
     @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<EmpleadoProyecto> empleadosEnProyecto;
+    private List<Asignaciones> asignaciones;
 
+    // Otros atributos y métodos
     private static final long serialVersionUID = 1L;
 }

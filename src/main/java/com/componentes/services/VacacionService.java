@@ -11,23 +11,7 @@ import java.sql.SQLException;
 public class VacacionService implements ICrud<Vacaciones> {
 
     @Override
-    public Vacaciones encontrarPK(EntityManager em, Vacaciones obj) throws SQLException {
-        Vacaciones vacacionesLocalizado = em.find(Vacaciones.class, obj);
-        if (vacacionesLocalizado != null) {
-            return vacacionesLocalizado;
-        }
-        return null;
-    }
-
-    @Override
-    public List<Vacaciones> listar(EntityManager em) throws SQLException {
-        String jpql = "SELECT t FROM " + Vacaciones.class.getSimpleName() + " t";
-        List<Vacaciones> lista = em.createQuery(jpql, Vacaciones.class).getResultList();
-        return lista;
-    }
-
-    @Override
-    public void insertar(EntityManager em, Vacaciones obj) throws SQLException {
+    public void create(EntityManager em, Vacaciones obj) throws SQLException {
         em.getTransaction().begin();
 
         em.persist(obj);
@@ -36,29 +20,57 @@ public class VacacionService implements ICrud<Vacaciones> {
     }
 
     @Override
-    public void eliminar(EntityManager em, Vacaciones obj) throws SQLException {
+    public Vacaciones read(EntityManager em, int id) throws SQLException {
+        Vacaciones response = em.find(Vacaciones.class, id);
+        if (response != null) {
+            return response;
+        }
+        return null;
+    }
+
+    @Override
+    public void update(EntityManager em, int id) throws SQLException {
         em.getTransaction().begin();
 
-        em.remove(obj);
+        Vacaciones response = em.find(Vacaciones.class, id);
+        if (response != null) {
+            em.merge(response);
+        }
 
         em.getTransaction().commit();
     }
 
     @Override
-    public void modificar(EntityManager em, Vacaciones obj) throws SQLException {
+    public void delete(EntityManager em, int id) throws SQLException {
         em.getTransaction().begin();
 
-        em.merge(obj);
+        Vacaciones response = em.find(Vacaciones.class, id);
+        if (response != null) {
+            em.remove(response);
+        }
 
         em.getTransaction().commit();
     }
 
     @Override
-    public List<Vacaciones> listarPorEmpleadoId(EntityManager em, Long empleadoId) throws SQLException {
-        String jpql = "SELECT t FROM " + Vacaciones.class.getSimpleName() + " t WHERE t.empleado_id = :empleadoId";
-        return em.createQuery(jpql, Vacaciones.class)
-                .setParameter("empleadoId", empleadoId)
+    public List<Vacaciones> readAll(EntityManager em) throws SQLException {
+        String jpql = "SELECT t FROM " + Vacaciones.class.getSimpleName() + " t";
+        List<Vacaciones> lista = em.createQuery(jpql, Vacaciones.class).getResultList();
+        return lista;
+    }
+
+    @Override
+    public List<Vacaciones> readAllByUser(EntityManager em, int id) throws SQLException {
+        em.getTransaction().begin();
+
+        String jpql = "SELECT c FROM Vacaciones c WHERE c.usuario_id = :id";
+        List<Vacaciones> lista = em.createQuery(jpql, Vacaciones.class)
+                .setParameter("id", id)
                 .getResultList();
+
+        em.getTransaction().commit();
+
+        return lista;
     }
 
 }

@@ -6,32 +6,13 @@ import jakarta.persistence.EntityManager;
 
 import com.componentes.entitys.Empleados;
 import com.componentes.contracts.ICrud;
+import jakarta.persistence.TypedQuery;
 import java.sql.SQLException;
 
 public class EmpleadoService implements ICrud<Empleados> {
 
     @Override
-    public Empleados encontrarPK(EntityManager em, Empleados obj) throws SQLException {
-        Empleados empleadosLocalizado = em.find(Empleados.class, obj);
-        if (empleadosLocalizado
-                != null) {
-            return empleadosLocalizado;
-        }
-
-        return null;
-    }
-
-    @Override
-    public List<Empleados> listar(EntityManager em) throws SQLException {
-        String jpql = "SELECT t FROM " + Empleados.class
-                .getSimpleName() + " t";
-        List<Empleados> lista = em.createQuery(jpql, Empleados.class
-        ).getResultList();
-        return lista;
-    }
-
-    @Override
-    public void insertar(EntityManager em, Empleados obj) {
+    public void create(EntityManager em, Empleados obj) throws SQLException {
         em.getTransaction().begin();
 
         em.persist(obj);
@@ -40,25 +21,69 @@ public class EmpleadoService implements ICrud<Empleados> {
     }
 
     @Override
-    public void eliminar(EntityManager em, Empleados obj) throws SQLException {
+    public Empleados read(EntityManager em, int id) throws SQLException {
+        Empleados response = em.find(Empleados.class, id);
+        if (response != null) {
+            return response;
+        }
+        return null;
+    }
+
+    @Override
+    public void update(EntityManager em, int id) throws SQLException {
         em.getTransaction().begin();
 
-        em.remove(obj);
+        Empleados response = em.find(Empleados.class, id);
+        if (response != null) {
+            em.merge(response);
+        }
 
         em.getTransaction().commit();
     }
 
     @Override
-    public void modificar(EntityManager em, Empleados obj) throws SQLException {
+    public void delete(EntityManager em, int id) throws SQLException {
         em.getTransaction().begin();
 
-        em.merge(obj);
+        Empleados response = em.find(Empleados.class, id);
+        if (response != null) {
+            em.remove(response);
+        }
 
         em.getTransaction().commit();
     }
 
     @Override
-    public List<Empleados> listarPorEmpleadoId(EntityManager em, Long empleadoId) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Empleados> readAll(EntityManager em) throws SQLException {
+        String jpql = "SELECT t FROM " + Empleados.class.getSimpleName() + " t";
+        List<Empleados> lista = em.createQuery(jpql, Empleados.class).getResultList();
+        return lista;
+    }
+
+    @Override
+    public List<Empleados> readAllByUser(EntityManager em, int id) throws SQLException {
+        em.getTransaction().begin();
+
+        String jpql = "SELECT c FROM Empleados c WHERE c.usuario_id = :id";
+        List<Empleados> lista = em.createQuery(jpql, Empleados.class)
+                .setParameter("id", id)
+                .getResultList();
+
+        em.getTransaction().commit();
+
+        return lista;
+    }
+
+    public Empleados readAllByCedula(EntityManager em, int cedula) throws SQLException {
+        em.getTransaction().begin();
+
+        String jpql = "SELECT c FROM Empleados c WHERE c.cedula = :cedula";
+        Empleados empleado = em.createQuery(jpql, Empleados.class)
+                .setParameter("cedula", cedula)
+                .getSingleResult();
+
+        em.getTransaction().commit();
+
+        return empleado;
     }
 }

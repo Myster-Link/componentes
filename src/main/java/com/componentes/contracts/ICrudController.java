@@ -9,7 +9,7 @@ public interface ICrudController<T> {
 
     T read(int id);
 
-    boolean update(T objeto);
+    boolean update(int id);
 
     boolean delete(int id);
 

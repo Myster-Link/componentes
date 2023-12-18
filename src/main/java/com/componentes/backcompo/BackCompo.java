@@ -2,11 +2,6 @@ package com.componentes.backcompo;
 
 import com.componentes.controllers.*;
 import com.componentes.entitys.*;
-import com.componentes.enums.Puesto;
-import com.componentes.enums.Rol;
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.util.List;
 
 public class BackCompo {
 

@@ -12,27 +12,8 @@ import java.sql.SQLException;
 
 public class UsuarioService implements ICrud<Usuarios> {
 
-    public UsuarioService() {
-    }
-
     @Override
-    public Usuarios encontrarPK(EntityManager em, Usuarios obj) throws SQLException {
-        Usuarios usuariosLocalizado = em.find(Usuarios.class, obj);
-        if (usuariosLocalizado != null) {
-            return usuariosLocalizado;
-        }
-        return null;
-    }
-
-    @Override
-    public List<Usuarios> listar(EntityManager em) throws SQLException {
-        String jpql = "SELECT t FROM " + Usuarios.class.getSimpleName() + " t";
-        List<Usuarios> lista = em.createQuery(jpql, Usuarios.class).getResultList();
-        return lista;
-    }
-
-    @Override
-    public void insertar(EntityManager em, Usuarios obj) throws SQLException {
+    public void create(EntityManager em, Usuarios obj) throws SQLException {
         em.getTransaction().begin();
 
         em.persist(obj);
@@ -41,35 +22,70 @@ public class UsuarioService implements ICrud<Usuarios> {
     }
 
     @Override
-    public void eliminar(EntityManager em, Usuarios obj) throws SQLException {
-        em.getTransaction().begin();
-
-        em.remove(obj);
-
-        em.getTransaction().commit();
-
+    public Usuarios read(EntityManager em, int id) throws SQLException {
+        Usuarios response = em.find(Usuarios.class, id);
+        if (response != null) {
+            return response;
+        }
+        return null;
     }
 
     @Override
-    public void modificar(EntityManager em, Usuarios obj) throws SQLException {
+    public void update(EntityManager em, int id) throws SQLException {
         em.getTransaction().begin();
 
-        em.merge(obj);
+        Usuarios response = em.find(Usuarios.class, id);
+        if (response != null) {
+            em.merge(response);
+        }
 
         em.getTransaction().commit();
     }
 
-    public Usuarios encontrarPorCedula(EntityManager em, int numeroCedula) {
-        String jpql = "SELECT u FROM " + Usuarios.class.getSimpleName() + " u WHERE u.cedula = :numeroCedula";
+    @Override
+    public void delete(EntityManager em, int id) throws SQLException {
+        em.getTransaction().begin();
 
-        TypedQuery<Usuarios> query = em.createQuery(jpql, Usuarios.class);
-        query.setParameter("numeroCedula", numeroCedula);
+        Usuarios response = em.find(Usuarios.class, id);
+        if (response != null) {
+            em.remove(response);
+        }
 
-        return query.getSingleResult();
+        em.getTransaction().commit();
     }
 
     @Override
-    public List<Usuarios> listarPorEmpleadoId(EntityManager em, Long empleadoId) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Usuarios> readAll(EntityManager em) throws SQLException {
+        String jpql = "SELECT t FROM " + Usuarios.class.getSimpleName() + " t";
+        List<Usuarios> lista = em.createQuery(jpql, Usuarios.class).getResultList();
+        return lista;
     }
+
+    @Override
+    public List<Usuarios> readAllByUser(EntityManager em, int id) throws SQLException {
+        em.getTransaction().begin();
+
+        String jpql = "SELECT c FROM Usuarios c WHERE c.usuario_id = :id";
+        List<Usuarios> lista = em.createQuery(jpql, Usuarios.class)
+                .setParameter("id", id)
+                .getResultList();
+
+        em.getTransaction().commit();
+
+        return lista;
+    }
+
+    public Usuarios readAllByCedula(EntityManager em, int cedula) throws SQLException {
+        em.getTransaction().begin();
+
+        String jpql = "SELECT u FROM " + Usuarios.class.getSimpleName() + " u WHERE u.cedula = :cedula";
+        Usuarios response = em.createQuery(jpql, Usuarios.class)
+                .setParameter("cedula", cedula)
+                .getSingleResult();
+
+        em.getTransaction().commit();
+
+        return response;
+    }
+
 }

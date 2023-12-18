@@ -36,4 +36,9 @@ public class PersistenceManager {
             entityManagerFactory = null; // Establecer a null después de cerrarlo
         }
     }
+
+    // Método para obtener el EntityManager con el nombre de la unidad de persistencia
+    public static EntityManager getEntityManager() {
+        return getEntityManager("BackCompPU");
+    }
 }

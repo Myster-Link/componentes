@@ -6,6 +6,7 @@ import com.componentes.services.UsuarioService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class AuthController {
@@ -24,12 +25,12 @@ public class AuthController {
 
     public Usuarios login(Usuarios usuarios) {
         try {
-            usuarioObtenido = usuariosServicio.encontrarPorCedula(em, usuarios.getCedula());
+            usuarioObtenido = usuariosServicio.readAllByCedula(em, usuarios.getCedula());
 
             if (usuarioObtenido.getClave().equals(usuarios.getClave())) {
                 return usuarioObtenido;
             }
-        } catch (NoResultException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         } finally {
@@ -40,9 +41,9 @@ public class AuthController {
 
     public boolean register(Usuarios usuarios) {
         try {
-            usuarios.setRol(Rol.EMPLEADO);
+            usuarios.setRol(Rol.ADMINISTRADOR);
             usuarios.setFechaRegistro(LocalDateTime.now());
-            usuariosServicio.insertar(em, usuarios);
+            usuariosServicio.create(em, usuarios);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
