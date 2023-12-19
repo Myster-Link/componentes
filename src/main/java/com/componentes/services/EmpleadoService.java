@@ -74,7 +74,7 @@ public class EmpleadoService implements ICrud<Empleados> {
     public Empleados readAllByCedula(EntityManager em, int cedula) throws SQLException {
         em.getTransaction().begin();
 
-        String jpql = "SELECT c FROM Empleados c WHERE c.cedula = :cedula";
+        String jpql = "SELECT e FROM " + Empleados.class.getSimpleName() + " e WHERE e.cedula = :cedula";
         Empleados empleado = em.createQuery(jpql, Empleados.class)
                 .setParameter("cedula", cedula)
                 .getSingleResult();
