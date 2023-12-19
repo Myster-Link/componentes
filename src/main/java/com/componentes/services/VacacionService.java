@@ -29,13 +29,10 @@ public class VacacionService implements ICrud<Vacaciones> {
     }
 
     @Override
-    public void update(EntityManager em, int id) throws SQLException {
+    public void update(EntityManager em, Vacaciones obj) throws SQLException {
         em.getTransaction().begin();
 
-        Vacaciones response = em.find(Vacaciones.class, id);
-        if (response != null) {
-            em.merge(response);
-        }
+        em.merge(obj);
 
         em.getTransaction().commit();
     }
@@ -44,7 +41,8 @@ public class VacacionService implements ICrud<Vacaciones> {
     public void delete(EntityManager em, int id) throws SQLException {
         em.getTransaction().begin();
 
-        Vacaciones response = em.find(Vacaciones.class, id);
+        Vacaciones response = em.find(Vacaciones.class,
+                id);
         if (response != null) {
             em.remove(response);
         }
@@ -54,8 +52,10 @@ public class VacacionService implements ICrud<Vacaciones> {
 
     @Override
     public List<Vacaciones> readAll(EntityManager em) throws SQLException {
-        String jpql = "SELECT t FROM " + Vacaciones.class.getSimpleName() + " t";
-        List<Vacaciones> lista = em.createQuery(jpql, Vacaciones.class).getResultList();
+        String jpql = "SELECT t FROM " + Vacaciones.class
+                .getSimpleName() + " t";
+        List<Vacaciones> lista = em.createQuery(jpql, Vacaciones.class
+        ).getResultList();
         return lista;
     }
 
@@ -64,7 +64,8 @@ public class VacacionService implements ICrud<Vacaciones> {
         em.getTransaction().begin();
 
         String jpql = "SELECT c FROM Vacaciones c WHERE c.usuario_id = :id";
-        List<Vacaciones> lista = em.createQuery(jpql, Vacaciones.class)
+        List<Vacaciones> lista = em.createQuery(jpql, Vacaciones.class
+        )
                 .setParameter("id", id)
                 .getResultList();
 

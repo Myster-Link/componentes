@@ -29,13 +29,10 @@ public class ComentarioService implements ICrud<Comentario> {
     }
 
     @Override
-    public void update(EntityManager em, int id) throws SQLException {
+    public void update(EntityManager em, Comentario obj) throws SQLException {
         em.getTransaction().begin();
 
-        Comentario response = em.find(Comentario.class, id);
-        if (response != null) {
-            em.merge(response);
-        }
+        em.merge(obj);
 
         em.getTransaction().commit();
     }

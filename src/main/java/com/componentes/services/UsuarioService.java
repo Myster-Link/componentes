@@ -31,14 +31,11 @@ public class UsuarioService implements ICrud<Usuarios> {
     }
 
     @Override
-    public void update(EntityManager em, int id) throws SQLException {
+    public void update(EntityManager em, Usuarios obj) throws SQLException {
         em.getTransaction().begin();
 
-        Usuarios response = em.find(Usuarios.class, id);
-        if (response != null) {
-            em.merge(response);
-        }
-
+        em.merge(obj);
+        
         em.getTransaction().commit();
     }
 

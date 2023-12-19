@@ -30,13 +30,10 @@ public class EmpleadoService implements ICrud<Empleados> {
     }
 
     @Override
-    public void update(EntityManager em, int id) throws SQLException {
+    public void update(EntityManager em, Empleados obj) throws SQLException {
         em.getTransaction().begin();
 
-        Empleados response = em.find(Empleados.class, id);
-        if (response != null) {
-            em.merge(response);
-        }
+        em.merge(obj);
 
         em.getTransaction().commit();
     }

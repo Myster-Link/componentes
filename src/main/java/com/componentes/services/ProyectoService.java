@@ -25,13 +25,10 @@ public class ProyectoService implements ICrud<Proyectos> {
     }
 
     @Override
-    public void update(EntityManager em, int id) throws SQLException {
+    public void update(EntityManager em, Proyectos obj) throws SQLException {
         em.getTransaction().begin();
 
-        Proyectos response = em.find(Proyectos.class, id);
-        if (response != null) {
-            em.merge(response);
-        }
+        em.merge(obj);
 
         em.getTransaction().commit();
     }

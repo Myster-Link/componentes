@@ -29,13 +29,10 @@ public class AsignacionService implements ICrud<Asignaciones> {
     }
 
     @Override
-    public void update(EntityManager em, int id) throws SQLException {
+    public void update(EntityManager em, Asignaciones obj) throws SQLException {
         em.getTransaction().begin();
 
-        Asignaciones response = em.find(Asignaciones.class, id);
-        if (response != null) {
-            em.merge(response);
-        }
+        em.merge(obj);
 
         em.getTransaction().commit();
     }

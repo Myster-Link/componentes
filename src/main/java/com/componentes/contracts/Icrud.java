@@ -11,7 +11,7 @@ public interface ICrud<T> {
 
     public T read(EntityManager em, int id) throws SQLException;
 
-    public void update(EntityManager em, int id) throws SQLException;
+    public void update(EntityManager em, T obj) throws SQLException;
 
     public void delete(EntityManager em, int id) throws SQLException;
 
